@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { getDevices } from "#dex/getters.js";
 
 export const Route = createFileRoute("/")({
@@ -21,7 +21,16 @@ function App() {
 					const device = devices[id];
 					return (
 						<li key={id}>
-							{device.name} ({device.id})
+							<Link
+								to={`/products/$productIdOrSku`}
+								params={{
+									productIdOrSku:
+										(device.sku ? device.sku.toLowerCase() : undefined) ??
+										device.id,
+								}}
+							>
+								{device.name} ({device.id})
+							</Link>
 							{device.lineID ? ` - Line: ${lineNames[device.lineID]}` : ""}
 						</li>
 					);

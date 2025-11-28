@@ -17,6 +17,7 @@ export function indexUIDB(raw: RawUIDB): {
 	ids: string[];
 	devices: Record<string, UIDBDevice>;
 	rawDevices: Record<string, RawDevice>;
+	skuToIdMap: Record<string, string>;
 	lineNames: Record<string, string>;
 	version?: string;
 } {
@@ -29,6 +30,7 @@ export function indexUIDB(raw: RawUIDB): {
 	const devices = new Map<string, UIDBDevice>();
 	const rawDevices = new Map<string, RawDevice>();
 	const lineNames = new Map<string, string>();
+	const skuToIdMap = new Map<string, string>();
 
 	for (const rawDevice of devicesArray) {
 		const { device, lineName } = rawDeviceToDevice(rawDevice) ?? {};
@@ -36,9 +38,11 @@ export function indexUIDB(raw: RawUIDB): {
 			devices.set(device.id, device);
 			rawDevices.set(device.id, rawDevice);
 		}
-
 		if (device?.lineID && lineName) {
 			lineNames.set(device.lineID, lineName);
+		}
+		if (device?.sku) {
+			skuToIdMap.set(device.sku.toLowerCase(), device.id);
 		}
 	}
 
@@ -46,6 +50,7 @@ export function indexUIDB(raw: RawUIDB): {
 		ids: Array.from(devices.keys()),
 		devices: Object.fromEntries(devices),
 		rawDevices: Object.fromEntries(rawDevices),
+		skuToIdMap: Object.fromEntries(skuToIdMap),
 		lineNames: Object.fromEntries(lineNames),
 		version: raw?.version ? String(raw.version) : undefined,
 	};

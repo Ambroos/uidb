@@ -27,12 +27,7 @@ export type UIDBDevices = Record<string, UIDBDevice>;
 /**
  * A single renderable data value line
  */
-export type DexLine =
-	| {
-			text: string;
-	  }
-	| { icon: string }
-	| { text: string; icon: string };
+export type DexLine = { text?: string; icon?: string };
 
 /**
  * Base property with just a label

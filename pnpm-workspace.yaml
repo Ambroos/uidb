@@ -1,3 +1,4 @@
+managePackageManagerVersions: true
 useNodeVersion: 24.11.1
 engineStrict: true
 onlyBuiltDependencies:

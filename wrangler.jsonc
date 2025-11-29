@@ -1,9 +1,14 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "uidb",
-  "compatibility_date": "2025-11-13",
-  "compatibility_flags": ["nodejs_compat"],
-  "main": "@tanstack/react-start/server-entry",
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "uidb",
+	"compatibility_date": "2025-11-13",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"main": "@tanstack/react-start/server-entry",
 	"workers_dev": true,
-	"preview_urls": true
+	"preview_urls": true,
+	"assets": {
+		"html_handling": "drop-trailing-slash"
+	}
 }

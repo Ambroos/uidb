@@ -3,6 +3,7 @@ import { devtools } from '@tanstack/devtools-vite'
 import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
 import { cloudflare } from '@cloudflare/vite-plugin'
+import svgr from 'vite-plugin-svgr';
 
 const config = defineConfig({
   plugins: [
@@ -22,6 +23,7 @@ const config = defineConfig({
         plugins: ['babel-plugin-react-compiler'],
       },
     }),
+    svgr(),
   ],
 })
 

@@ -72,6 +72,7 @@ export default defineConfig({
 				},
 				colors: {
 					"Neutral-web-unifi-color-neutral-00": { value: "#FFFFFF" },
+					"Neutral-web-unifi-color-neutral-01": { value: "#F9FAFA" },
 					"Neutral-web-unifi-color-neutral-02": { value: "#F4F5F6" },
 					"Neutral-web-unifi-color-neutral-10": { value: "#50565E" },
 					"Neutral-Neutral-03-light": { value: "#EDEDF0" },

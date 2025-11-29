@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { indexUIDB } from "./dataProcessor";
-import { propertiesFromRawDevice, rawDeviceToDevice } from "./dataProperties";
+import { propertiesFromRawDevice } from "./dataProperties";
 import { fetchRawUIDB } from "./fetchRawUIDB";
 
 const getData = createServerFn({ method: "GET" })
@@ -8,13 +8,11 @@ const getData = createServerFn({ method: "GET" })
 	// .middleware([staticFunctionMiddleware]) // broken but would be _lovely_
 	.handler(async () => {
 		const raw = await fetchRawUIDB();
-		const { ids, devices, lineNames, skuToIdMap, rawDevices, version } =
-			indexUIDB(raw);
+		const { ids, devices, lineNames, rawDevices, version } = indexUIDB(raw);
 		return {
 			ids,
 			devices,
 			lineNames,
-			skuToIdMap,
 			rawDevices,
 			version,
 			date: new Date().toISOString(),
@@ -30,15 +28,13 @@ export const getDevices = createServerFn({ method: "GET" }).handler(
 );
 
 export const getDeviceProperties = createServerFn({ method: "GET" })
-	.inputValidator((data: { idOrSku: string }) => data)
+	.inputValidator((data: { id: string }) => data)
 	.handler(async ({ data }) => {
-		const { rawDevices, skuToIdMap, version, date } = await getData();
-		const idViaSku = skuToIdMap[data.idOrSku];
-		const rawDevice = rawDevices[idViaSku ?? data.idOrSku];
+		const { rawDevices, version, date } = await getData();
+		const rawDevice = rawDevices[data.id];
 		if (!rawDevice) return;
-		const sku = rawDeviceToDevice(rawDevice)?.device.sku; // TODO remove this SKU handling when base product data comes via context
 		const properties = propertiesFromRawDevice(rawDevice);
-		return { properties, version, date, sku };
+		return { properties, version, date };
 	});
 
 export const getDeviceRawData = createServerFn({ method: "GET" })

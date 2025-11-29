@@ -1,23 +1,16 @@
-import { createFileRoute, notFound, redirect } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import { getDeviceProperties } from "#dex/getters.js";
 
-export const Route = createFileRoute("/products/$productIdOrSku")({
+export const Route = createFileRoute("/products/$productId")({
 	loader: async ({ params }) => {
-		const { productIdOrSku } = params;
+		const { productId } = params;
 		const data = await getDeviceProperties({
-			data: { idOrSku: productIdOrSku },
+			data: { id: productId },
 		});
 		if (!data) {
 			throw notFound();
 		}
-		const { properties, version, date, sku } = data;
-		if (sku && sku.toLowerCase() !== productIdOrSku) {
-			throw redirect({
-				to: "/products/$productIdOrSku",
-				params: { productIdOrSku: sku.toLowerCase() },
-			});
-		}
-		return { properties, version, date };
+		return data;
 	},
 	component: ProductPage,
 	notFoundComponent: () => <div>Yikes...</div>,
@@ -25,11 +18,11 @@ export const Route = createFileRoute("/products/$productIdOrSku")({
 
 function ProductPage() {
 	const { properties, date, version } = Route.useLoaderData();
-	const { productIdOrSku } = Route.useParams();
+	const { productId } = Route.useParams();
 	return (
 		<div>
 			<h2>Product page</h2>
-			<p>{productIdOrSku}</p>
+			<p>{productId}</p>
 			<p>
 				UIDB version: {version} (fetched at {date})
 			</p>

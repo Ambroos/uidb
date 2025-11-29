@@ -22,11 +22,9 @@ function App() {
 					return (
 						<li key={id}>
 							<Link
-								to={`/products/$productIdOrSku`}
+								to={`/products/$productId`}
 								params={{
-									productIdOrSku:
-										(device.sku ? device.sku.toLowerCase() : undefined) ??
-										device.id,
+									productId: device.id,
 								}}
 							>
 								{device.name} ({device.id})

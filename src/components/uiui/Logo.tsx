@@ -3,6 +3,7 @@ import { cx } from "#panda/css/cx.js";
 import LogoSvg from "./icons/logo.svg?react";
 
 export type LogoProps = {
+	className?: string;
 	fitWidth?: boolean;
 	fitHeight?: boolean;
 	size?: number;
@@ -15,6 +16,7 @@ export function Logo(props: LogoProps) {
 	return (
 		<div
 			className={cx(
+				props.className,
 				css({
 					backgroundColor: "bg.inverseHoverable",
 					aspectRatio: "1 / 1",
@@ -31,8 +33,8 @@ export function Logo(props: LogoProps) {
 		>
 			<LogoSvg
 				className={css({
-					width: "[100%]",
-					height: "[100%]",
+					width: "100%",
+					height: "100%",
 					"& path": {
 						fill: "Neutral-web-unifi-color-neutral-10",
 						_groupHover: {
@@ -40,10 +42,6 @@ export function Logo(props: LogoProps) {
 						},
 					},
 				})}
-				style={{
-					width: "100%",
-					height: "100%",
-				}}
 				role="img"
 				aria-label="Ubiquiti Logo"
 			/>

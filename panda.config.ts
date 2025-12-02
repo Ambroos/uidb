@@ -64,11 +64,17 @@ export default defineConfig({
 				},
 			},
 			tokens: {
+				sizes: {
+					"100%": { value: "100%" },
+					headerHeight: { value: "50px" },
+				},
 				spacing: {
+					"0.5x": { value: "4px" },
 					"0.75x": { value: "6px" },
 					"1x": { value: "8px" },
 					"2x": { value: "16px" },
 					"3x": { value: "24px" },
+					"4x": { value: "32px" },
 				},
 				colors: {
 					"Neutral-web-unifi-color-neutral-00": { value: "#FFFFFF" },

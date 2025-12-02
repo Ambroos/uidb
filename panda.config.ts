@@ -89,9 +89,15 @@ export default defineConfig({
 					"Semantic-Destructive-web-unifi-color-red-06": { value: "#F03A3E" },
 					"Primary-web-unifi-color-ublue-06": { value: "#006FFF" },
 					"Primary-web-unifi-color-ublue-07": { value: "#0059CC" },
+					blurBackdrop: { value: "rgba(255, 255, 255, 0.85)" },
 				},
 			},
 			semanticTokens: {
+				sizes: {
+					productTable: {
+						rowHeight: { value: "32px" },
+					},
+				},
 				colors: {
 					bg: {
 						hoverable: {
@@ -117,9 +123,6 @@ export default defineConfig({
 				radii: {
 					standard: { value: "4px" },
 					card: { value: "8px" },
-				},
-				blurs: {
-					tableHeader: { value: "opacity(85%) blur(2px)" },
 				},
 			},
 		},

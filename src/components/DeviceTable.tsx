@@ -31,35 +31,47 @@ export type DeviceTableProps = {
 export function DeviceTable(props: DeviceTableProps) {
 	const { idsToShow, devices, lineNames } = props;
 	return (
-		<div
-			className={cx(
-				props.className,
-				css({
-					display: "grid",
-					gridTemplateColumns: "36px 1fr 1fr",
-					width: "100%",
-					textStyle: "bodyPrimary",
-				}),
-			)}
-		>
+		<>
 			<div
-				className={css({
-					display: "contents",
-				})}
+				className={cx(
+					props.className,
+					css({
+						display: "grid",
+						gridTemplateColumns: "36px 1fr 1fr",
+						width: "100%",
+						textStyle: "bodyPrimary",
+					}),
+				)}
 			>
 				<div
-					className={cx(cellStyle, tableHeaderStyle) /* image column */}
-				></div>
-				<div className={cx(cellStyle, tableHeaderStyle)}>Product Line</div>
-				<div className={cx(cellStyle, tableHeaderStyle)}>Name</div>
+					className={css({
+						display: "contents",
+					})}
+				>
+					<div
+						className={cx(cellStyle, tableHeaderStyle) /* image column */}
+					></div>
+					<div className={cx(cellStyle, tableHeaderStyle)}>Product Line</div>
+					<div className={cx(cellStyle, tableHeaderStyle)}>Name</div>
+				</div>
+				<div className={css({ display: "contents" })}>
+					{idsToShow.map((id) => {
+						const device = devices[id];
+						return <DeviceRow key={id} device={device} lineNames={lineNames} />;
+					})}
+				</div>
 			</div>
-			<div className={css({ display: "contents" })}>
-				{idsToShow.map((id) => {
-					const device = devices[id];
-					return <DeviceRow key={id} device={device} lineNames={lineNames} />;
+			<p
+				className={css({
+					marginBlock: "4x",
+					textAlign: "center",
+					color: "Text-Text-3",
 				})}
-			</div>
-		</div>
+			>
+				Thank you for scrolling all the way down in my little demo project (or
+				reading the source) ❤️
+			</p>
+		</>
 	);
 }
 

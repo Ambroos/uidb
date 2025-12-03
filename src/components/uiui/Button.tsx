@@ -28,6 +28,13 @@ export function Button(props: ButtonProps) {
 					borderRadius: "standard",
 					boxShadow: "Shadow-low-light",
 					cursor: "pointer",
+					borderWidth: "1px",
+					borderStyle: "solid",
+					borderColor: "[transparent]",
+					_hover: {
+						borderColor: "Primary-web-unifi-color-ublue-06",
+					},
+					transition: "[border-color 0.2s ease-in-out]",
 				}),
 				className,
 			)}

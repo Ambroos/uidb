@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Logo } from "#components/uiui/Logo.js";
+import { Spinner } from "#components/uiui/Spinner.js";
 import { css } from "#panda/css/css.js";
 
 export const Route = createFileRoute("/dev/uiui")({
@@ -23,6 +24,8 @@ function RouteComponent() {
 			>
 				<Logo fitHeight />
 			</div>
+			<h3>Spinner</h3>
+			<Spinner />
 		</div>
 	);
 }

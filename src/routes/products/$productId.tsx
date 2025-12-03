@@ -1,6 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
+import { BackOrIndexButton } from "#components/BackOrIndexButton.js";
 import { Fingerprint } from "#components/Fingerprint.js";
-import { LinkButton } from "#components/uiui/Button.js";
 import { Page } from "#components/uiui/Page.js";
 import { getDeviceProperties } from "#dex/getters.js";
 import { css } from "#panda/css/css.js";
@@ -31,9 +31,7 @@ function ProductPage() {
 					justifyContent: "space-between",
 				})}
 			>
-				<LinkButton to="/" icon="chevron-left">
-					Back
-				</LinkButton>
+				<BackOrIndexButton />
 				{/* TODO: previous/next buttons */}
 			</div>
 			<div

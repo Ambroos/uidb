@@ -26,7 +26,17 @@ export function SeeRawDeviceJSON(props: { id: string }) {
 				</button>
 			)}
 			{isOpen && (
-				<Suspense fallback={<Spinner />}>
+				<Suspense
+					fallback={
+						<div>
+							<Spinner />
+							<p className={css({ marginTop: "1x", fontSize: "[10px]" })}>
+								(note from Ambroos: it's actually fast, 2 seconds bonus seconds
+								to enjoy the spinner)
+							</p>
+						</div>
+					}
+				>
 					<SuspenseRawDeviceJSON id={id} />
 				</Suspense>
 			)}
@@ -39,7 +49,11 @@ function SuspenseRawDeviceJSON(props: { id: string }) {
 	const getData = useServerFn(getDeviceRawData);
 	const { data } = useSuspenseQuery({
 		queryKey: ["deviceRawData", id],
-		queryFn: () => getData({ data: { id } }),
+		queryFn: async () => {
+			// Adding 3 seconds artificial delay just to demo the spinner 😬
+			await new Promise((r) => setTimeout(r, 3000));
+			return getData({ data: { id } });
+		},
 	});
 	return (
 		<div

@@ -19,6 +19,7 @@ export function commonImgSrcSet(
 	image: string,
 	type: string = "default",
 ) {
+	// These are a bit extravagant, but they cover everything and gzip well enough to not really be an issue
 	const sizes = [
 		20, 40, 60, 80, 120, 160, 240, 260, 320, 480, 540, 720, 960, 1140,
 	]; // common sizes at 1x/2x/3x

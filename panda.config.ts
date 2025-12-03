@@ -51,6 +51,17 @@ export default defineConfig({
 						lineHeight: "20px",
 					},
 				},
+				headingXlarge1: {
+					description: "Web/Heading-xlarge-1 in Figma",
+					value: {
+						fontFamily: "Inter, sans-serif",
+						fontSize: "20px",
+						fontOpticalSizing: "auto",
+						fontStyle: "normal",
+						fontWeight: "700",
+						lineHeight: "28px",
+					},
+				},
 				caption: {
 					description: "Web/Caption in Figma",
 					value: {
@@ -90,6 +101,12 @@ export default defineConfig({
 					"Primary-web-unifi-color-ublue-06": { value: "#006FFF" },
 					"Primary-web-unifi-color-ublue-07": { value: "#0059CC" },
 					blurBackdrop: { value: "rgba(255, 255, 255, 0.85)" },
+				},
+				shadows: {
+					"Shadow-low-light": {
+						value:
+							"0 0 1px 0 rgba(0, 0, 0, 0.06), 0 8px 24px 0 rgba(0, 0, 0, 0.08)",
+					},
 				},
 			},
 			semanticTokens: {

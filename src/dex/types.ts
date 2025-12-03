@@ -1,3 +1,5 @@
+import type { IconName } from "lucide-react/dynamic";
+
 /**
  * A core UIDB device, for indexes.
  */
@@ -27,7 +29,7 @@ export type UIDBDevices = Record<string, UIDBDevice>;
 /**
  * A single renderable data value line
  */
-export type DexLine = { text?: string; icon?: string };
+export type DexLine = { text?: string; badges?: string[]; icon?: IconName };
 
 /**
  * Base property with just a label

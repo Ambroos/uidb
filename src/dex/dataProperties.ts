@@ -42,9 +42,40 @@ type PropertyExtractor = [
 
 const PROPERTIES: PropertyExtractor[] = [
 	["Product Line", (raw) => tl(raw?.line?.name)],
-	["ID", (raw) => tl(raw?.id)],
+	["SKU", (raw) => tl(raw?.sku)],
 	["Name", (raw) => tl(raw?.product?.name)],
 	["Short Name", (raw) => tl(raw?.product?.abbrev)],
+	[
+		"WiFi Standards",
+		(raw) => {
+			const features = raw?.unifi?.network?.features;
+			let w5 = features?.ac === true;
+			let w6 = features?.ax === true;
+			const w7 = features?.be === true;
+			if (w6) {
+				w5 = true;
+			}
+			if (w7) {
+				w6 = true;
+				w5 = true;
+			}
+			const standards: string[] = [];
+			if (w5) standards.push("5");
+			if (w6) standards.push("6");
+			if (w7) standards.push("7");
+			if (standards.length > 0) {
+				return { badges: standards };
+			}
+			return undefined;
+		},
+	],
+	[
+		"Number of Ports",
+		(raw) => {
+			const textLine = tl(raw?.unifi?.network?.numberOfPorts);
+			return textLine ? { ...textLine, icon: "ethernet-port" } : undefined;
+		},
+	],
 	[
 		"WiFi Radios",
 		(raw) => {
@@ -76,7 +107,6 @@ const PROPERTIES: PropertyExtractor[] = [
 			return undefined;
 		},
 	],
-	["Number of Ports", (raw) => tl(raw?.unifi?.network?.numberOfPorts)],
 ];
 
 function radioLine(

@@ -11,12 +11,9 @@ export const Route = createFileRoute("/")({
 });
 
 function App() {
-	const { ids, devices, lineNames, date, version } = Route.useLoaderData();
+	const { ids, devices, lineNames } = Route.useLoaderData();
 	return (
 		<Page>
-			<p>
-				UIDB version: {version} (fetched at {date})
-			</p>
 			<DeviceTable idsToShow={ids} devices={devices} lineNames={lineNames} />
 		</Page>
 	);

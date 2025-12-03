@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { indexUIDB } from "./dataProcessor";
-import { propertiesFromRawDevice } from "./dataProperties";
+import { propertiesFromRawDevice, rawDeviceToDevice } from "./dataProperties";
 import { fetchRawUIDB } from "./fetchRawUIDB";
 
 const getData = createServerFn({ method: "GET" })
@@ -34,7 +34,10 @@ export const getDeviceProperties = createServerFn({ method: "GET" })
 		const rawDevice = rawDevices[data.id];
 		if (!rawDevice) return;
 		const properties = propertiesFromRawDevice(rawDevice);
-		return { properties, version, date };
+		const deviceResult = rawDeviceToDevice(rawDevice);
+		const device = deviceResult?.device;
+		const lineName = deviceResult?.lineName;
+		return { properties, device, lineName, version, date };
 	});
 
 export const getDeviceRawData = createServerFn({ method: "GET" })

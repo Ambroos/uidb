@@ -7,7 +7,7 @@ export function Spinner(props: { size?: number }) {
 		<LoaderCircle
 			color={token("colors.Text-Text-3")}
 			className={css({
-				animation: "spin 1s linear infinite",
+				animation: "spin 1.25s linear infinite",
 			})}
 			size={props.size ?? 24}
 		/>

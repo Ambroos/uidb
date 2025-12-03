@@ -142,6 +142,12 @@ export default defineConfig({
 					card: { value: "8px" },
 				},
 			},
+			keyframes: {
+				spin: {
+					"0%": { transform: "rotate(0deg)" },
+					"100%": { transform: "rotate(360deg)" },
+				},
+			},
 		},
 	},
 	presets: [],
